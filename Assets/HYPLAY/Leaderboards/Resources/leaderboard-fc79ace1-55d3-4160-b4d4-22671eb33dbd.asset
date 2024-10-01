@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afcd78d887c044f4bdc5ef2cc96c84f3, type: 3}
-  m_Name: Leaderboards
+  m_Script: {fileID: 11500000, guid: 5430e3f481ef42cf94d3577880d201f2, type: 3}
+  m_Name: leaderboard-fc79ace1-55d3-4160-b4d4-22671eb33dbd
   m_EditorClassIdentifier: 
-  leaderboards:
-  - {fileID: 11400000, guid: 702e36f837d61044eb38474db16bbe8e, type: 2}
+  id: fc79ace1-55d3-4160-b4d4-22671eb33dbd
+  name: Leaderboard Name
+  description: Leaderboard Description
+  secretKey: 

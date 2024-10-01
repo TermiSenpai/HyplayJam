@@ -12,23 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86356c65269e24441b830d0ca9ce5360, type: 3}
   m_Name: Settings
   m_EditorClassIdentifier: 
-  accessToken: 
-  devToken: 
-  appName: 
-  appDescription: 
-  appUrl: 
+  accessToken: user_at_VZPJZ1nTkNewthMHAX10V6ZA92lc_zlZSc97PhQXJiXPWi-hnkn_jRpN5UoX44uc
+  devToken: sca_sat:59e7341b-2ac0-4d37-bf28-2d99f0032e69:gu6PHavr04oS0niP58aon2dMazfEjEUx4vICcfffz2H5Xe2ziObsQ42Q0BhjZrbz
+  appName: One Hit jam dev
+  appDescription: This is a hyplay jam with no hit theme
+  appUrl: https://termisenpai.itch.io/hyplay-jam
   timeoutHours: 24
   usePopup: 1
   currentApp:
-    id: 
-    secretKey: 
-    name: 
-    description: 
-    redirectUris: []
-    url: 
+    id: 061c0d5d-9a08-4acd-8747-56af33446b03
+    secretKey: app_sk_AnOMvqZGS0Cl6djQfr-5w7xvMrD6GTCQFCIMFLSMCq4GR8WXSgp4QOXC7yazY0yA
+    name: One Hit jam dev
+    description: This is a hyplay jam with no hit theme
+    redirectUris:
+    - https://termisenpai.itch.io/hyplay-jam/
+    - https://html-classic.itch.zone/html/
+    url: https://termisenpai.itch.io/hyplay-jam
     iconImageAsset:
-      id: 
-      cdnUrl: 
+      id: d34c9ba7-4a70-4f7b-ac70-dc5b229453af
+      cdnUrl: https://assets.hyplay.com/e5f874b6-de9e-4a71-a8dd-faad4eb494f7/a8a31adbc9c16be27659951267132687-1727795252566.png
     backgroundImageAsset:
-      id: 
-      cdnUrl: 
+      id: 6065544f-e265-4b35-aee7-14681caff077
+      cdnUrl: https://assets.hyplay.com/e5f874b6-de9e-4a71-a8dd-faad4eb494f7/41ca677812231ee0c0f19d3f2d07b878-1727795253280.png
