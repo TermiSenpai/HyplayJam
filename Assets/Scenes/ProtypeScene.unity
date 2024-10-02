@@ -471,9 +471,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4eebcad57b51a2a4bae614c2738b618f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  balloonPrefab: {fileID: 0}
+  balloonPrefab: {fileID: 779182114632880559, guid: f75e9907d152e904b998df837a514c2b, type: 3}
   balloonCount: 5
-  spawnAreaMin: {x: -8.5, y: 4.9}
+  spawnAreaMin: {x: -8.5, y: 4}
   spawnAreaMax: {x: 8.5, y: -3}
 --- !u!4 &1099393227
 Transform:
