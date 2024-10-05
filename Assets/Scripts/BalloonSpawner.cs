@@ -1,56 +1,62 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BalloonSpawner : MonoBehaviour
 {
-    public GameObject balloonPrefab; // Prefab del globo
-    public int balloonCount = 10;    // Número de globos a generar
-    public Vector2 spawnAreaMin;     // Coordenadas mínimas de la zona de spawn (inferior izquierda)
-    public Vector2 spawnAreaMax;     // Coordenadas máximas de la zona de spawn (superior derecha)
-
-    private float alignedXPosition;  // Coordenada X donde todos los globos estarán alineados
+    private BalloonManager balloonManager;
+    private int level = 1; // Starting level
+    private int activeBalloons = 0; // Active balloons counter
+    private bool gameStarted = false;
 
     void Start()
     {
-        // Generar una posición X aleatoria donde los globos estarán alineados
-        alignedXPosition = Random.Range(spawnAreaMin.x, spawnAreaMax.x);
-
-        SpawnBalloons();
+        balloonManager = GetComponent<BalloonManager>(); // Reference to the BalloonManager
+        balloonManager.OnBalloonDeactivated += OnBalloonDeactivated; // Subscribe to the event
+        Debug.Log("BalloonSpawner initialized.");
     }
 
-    void SpawnBalloons()
+    // Public method to start the game
+    public void StartGame()
     {
-        for (int i = 0; i < balloonCount; i++)
+        if (!gameStarted)
         {
-            // Generar una posición Y aleatoria dentro del área de spawn
-            float randomY = Random.Range(spawnAreaMin.y, spawnAreaMax.y);
-
-            // Todos los globos comparten la misma posición X (se alinean en el eje X)
-            Vector2 spawnPosition = new Vector2(alignedXPosition, randomY);
-
-            // Instanciar el globo en la posición generada
-            GameObject balloon = Instantiate(balloonPrefab, spawnPosition, Quaternion.identity);
-
-            // Asignar una dirección de movimiento aleatoria (+1 o -1) al globo
-            BalloonMovement balloonMovement = balloon.GetComponent<BalloonMovement>();
-            if (balloonMovement != null)
-            {
-                balloonMovement.initialDirection = Random.Range(0, 2) == 0 ? 1 : -1;
-            }
+            gameStarted = true;
+            Debug.Log("Game started.");
+            StartLevel(level); // Start the first level
+        }
+        else
+        {
+            Debug.LogWarning("The game has already started.");
         }
     }
 
-    // Dibujar los gizmos para mostrar el área de spawn
-    private void OnDrawGizmos()
+    void StartLevel(int level)
     {
-        // Cambia el color de Gizmos
-        Gizmos.color = Color.green;
+        Debug.Log($"Starting level {level} with {level} balloons.");
+        activeBalloons = level; // Set the number of balloons for this level
+        balloonManager.SpawnBalloons(level); // Delegate the task of spawning balloons to BalloonManager
+    }
 
-        // Obtener el tamaño del área de spawn
-        Vector2 spawnAreaSize = new Vector2(spawnAreaMax.x - spawnAreaMin.x, spawnAreaMax.y - spawnAreaMin.y);
+    // Method called when a balloon is deactivated
+    private void OnBalloonDeactivated()
+    {
+        activeBalloons--;
+        Debug.Log($"Balloon deactivated. {activeBalloons} balloons remaining.");
 
-        // Dibujar un rectángulo representando el área de spawn
-        Gizmos.DrawWireCube((spawnAreaMin + spawnAreaMax) / 2, spawnAreaSize);
+        if (activeBalloons == 0)
+        {
+            Debug.Log($"Level {level} completed.");
+            level++; // Increase the level
+            StartLevel(level); // Start the next level
+        }
+    }
+
+    void Update()
+    {
+        // Debugging: Start the game manually by pressing the 'S' key
+        if (Input.GetKeyDown(KeyCode.S) && !gameStarted)
+        {
+            Debug.Log("Starting the game manually.");
+            StartGame();
+        }
     }
 }
