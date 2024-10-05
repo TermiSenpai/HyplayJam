@@ -49,21 +49,21 @@ namespace UnityEditor.Hyplay
 
                 // Inject JavaScript to control the overlay
                 string overlayScript = $@"
-                    <script>
-                        if (self != top) {{
-                            document.getElementById('fullscreenOverlay').style.display = 'block';
-                        }}
+                <script>
+                    if (self != top) {{
+                        document.getElementById('fullscreenOverlay').style.display = 'block';
+                    }}
 
-                        document.getElementById('play').addEventListener('click', function() {{
-                            window.top.location = window.location.href;
-                        }});
+                    document.getElementById('play').addEventListener('click', function() {{
+                        window.top.location = window.location.href;
+                    }});
 
-                        document.getElementById('signin').addEventListener('click', function() {{
-                            var redirectUri = window.location.href;
-                            var url = 'https://hyplay.com/oauth/authorize/?appId=' + '{appId}' + '&chain=HYCHAIN&responseType=token' + '&redirectUri=' + redirectUri;
-                            window.top.location = url;
-                        }});
-                    </script>
+                    document.getElementById('signin').addEventListener('click', function() {{
+                        var redirectUri = window.location.href;
+                        var url = 'https://hyplay.com/oauth/authorize/?appId=' + '{appId}' + '&chain=HYCHAIN&responseType=token' + '&redirectUri=' + redirectUri;
+                        window.top.location = url;
+                    }});
+                </script>
             ";
 
                 htmlContent = htmlContent.Replace("</body>", overlayHtml + overlayScript + "</body>");

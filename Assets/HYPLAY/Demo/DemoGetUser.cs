@@ -29,12 +29,5 @@ namespace HYPLAY.Demo
             if (res.Success)
                 text.text = $"Welcome {res.Data.Username}";
         }
-
-        public async void DeleteSession()
-        {
-            text.text = "Logging out...";
-            await HyplayBridge.LogoutAsync();
-            text.text = "Logged out";
-        }
     }
 }

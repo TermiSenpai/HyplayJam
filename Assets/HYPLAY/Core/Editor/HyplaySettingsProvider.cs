@@ -105,9 +105,6 @@ namespace UnityEditor.Hyplay
             _accessToken = settings.FindProperty("accessToken").stringValue;
             accessToken.RegisterValueChangeCallback(GetAccessToken);
             
-            var devToken = rootElement.Q<PropertyField>("DevToken");
-            devToken.BindProperty(settings.FindProperty("devToken"));
-            
             var expireTime = rootElement.Q<PropertyField>("ExpireTime");
             expireTime.BindProperty(settings.FindProperty("timeoutHours"));
             
@@ -360,7 +357,8 @@ namespace UnityEditor.Hyplay
                         "redirectUris", new []
                         {
                             redirect,
-                            "https://html-classic.itch.zone/html/"
+                            "https://html-classic.itch.zone/html/",
+                            "http://localhost"
                         }
                     },
                     { "url", _appUrl.stringValue }

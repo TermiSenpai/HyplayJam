@@ -13,20 +13,20 @@ MonoBehaviour:
   m_Name: Settings
   m_EditorClassIdentifier: 
   accessToken: user_at_VZPJZ1nTkNewthMHAX10V6ZA92lc_zlZSc97PhQXJiXPWi-hnkn_jRpN5UoX44uc
-  devToken: sca_sat:59e7341b-2ac0-4d37-bf28-2d99f0032e69:gu6PHavr04oS0niP58aon2dMazfEjEUx4vICcfffz2H5Xe2ziObsQ42Q0BhjZrbz
-  appName: One Hit jam dev
-  appDescription: This is a hyplay jam with no hit theme
+  appName: Hyplay app
+  appDescription: This is a hyplay jam
   appUrl: https://termisenpai.itch.io/hyplay-jam
   timeoutHours: 24
   usePopup: 1
   currentApp:
-    id: 061c0d5d-9a08-4acd-8747-56af33446b03
-    secretKey: app_sk_AnOMvqZGS0Cl6djQfr-5w7xvMrD6GTCQFCIMFLSMCq4GR8WXSgp4QOXC7yazY0yA
-    name: One Hit jam dev
-    description: This is a hyplay jam with no hit theme
+    id: c0b9d6fc-60cd-41a5-992d-c4733d337a5c
+    secretKey: app_sk_NWp5HXkGQIm9eunBKqXVCgvhD2U2MxtQ3w0uPb_tuUEQo0F6thRv_IajJpoDu1dY
+    name: Hyplay app
+    description: This is a hyplay jam
     redirectUris:
     - https://termisenpai.itch.io/hyplay-jam/
     - https://html-classic.itch.zone/html/
+    - http://localhost
     url: https://termisenpai.itch.io/hyplay-jam
     iconImageAsset:
       id: d34c9ba7-4a70-4f7b-ac70-dc5b229453af

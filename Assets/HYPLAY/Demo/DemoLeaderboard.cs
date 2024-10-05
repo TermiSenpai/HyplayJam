@@ -18,7 +18,7 @@ namespace HYPLAY.Demo
         
         private bool _pressed = false;
         
-        private double _score = 0;
+        private float _score = 0;
         
         private void Awake()
         {
@@ -33,7 +33,7 @@ namespace HYPLAY.Demo
         public async void SubmitScore()
         {
             if (leaderboard == null) return;
-            var res = await leaderboard.PostScore(_score);
+            var res = await leaderboard.PostScore(Mathf.RoundToInt(_score));
             if (res.Success)
                 Debug.Log($"Successfully posted score {res.Data.score}");
             else

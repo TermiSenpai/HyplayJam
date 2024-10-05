@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -44,10 +45,9 @@ namespace HYPLAY.Leaderboards.Runtime
             };
         }
 
-        public async Task<HyplayResponse<LeaderboardResponse>> PostScore (double score)
+        public async Task<HyplayResponse<LeaderboardResponse>> PostScore (int score)
         {
-            var sf = Math.Round(score * 100) / 100;
-            var dataToHash = $"{secretKey}:{HyplayBridge.CurrentUser.Id}:{sf}";
+            var dataToHash = $"{secretKey}:{HyplayBridge.CurrentUser.Id}:{score.ToString(CultureInfo.InvariantCulture)}";
             using var sha256Hash = SHA256.Create();
 
             // Convert the input string to a byte array and compute the hash
@@ -67,7 +67,7 @@ namespace HYPLAY.Leaderboards.Runtime
 
             var body = new Dictionary<string, object>
             {
-                { "score", sf },
+                { "score", score },
                 { "hash", hash }
             };
             

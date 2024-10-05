@@ -49,10 +49,11 @@ namespace HYPLAY.Core.Runtime
             Object.DontDestroyOnLoad(_oauth);
 
             IsLoggedIn = false;
-            
-            if (PlayerPrefs.HasKey(CachedTokenKey))
+
+            var storedToken = PlayerPrefs.GetString(CachedTokenKey);
+            if (!string.IsNullOrWhiteSpace(storedToken))
             {
-                _settings.SetToken(PlayerPrefs.GetString(CachedTokenKey));
+                _settings.SetToken(storedToken);
                 var getUser = await GetUserAsync(false);
                 if (getUser.Success)
                 {

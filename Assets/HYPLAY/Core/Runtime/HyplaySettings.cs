@@ -14,7 +14,6 @@ namespace HYPLAY.Core.Runtime
     {
         #if UNITY_EDITOR
         [SerializeField, Space] private string accessToken;
-        [SerializeField, Tooltip("The game will automatically use this token in the editor. It is not included in the build.")] private string devToken;
         public string AccessToken => accessToken;
         
         [SerializeField] private string appName;
@@ -51,7 +50,7 @@ namespace HYPLAY.Core.Runtime
             Token = token;
         }
 
-        internal void DoLogin()
+        internal async void DoLogin()
         {
             var time = DateTimeOffset.Now + TimeSpan.FromHours(timeoutHours);
             
@@ -61,20 +60,48 @@ namespace HYPLAY.Core.Runtime
             else
                 DoLoginRedirect(Current.id, $"&expiresAt={time.ToUnixTimeSeconds()}");
             #else
-            var redirectUri = Current.redirectUris.First(uri => !uri.Contains("http")) + $"&expiresAt={time.ToUnixTimeSeconds()}";
-            #if UNITY_EDITOR
-            if (!string.IsNullOrWhiteSpace(devToken))
-            {
-                Debug.Log("signing in with dev token");
-                HyplayBridge.DeepLink($"myapp://token#token={devToken}");
-            }
             
-            redirectUri = Current.redirectUris.First(uri => uri.Contains("http")) + $"&expiresAt={time.ToUnixTimeSeconds()}";
-            if (HyplayBridge.IsLoggedIn)
+            
+            #if !UNITY_EDITOR
+            if (Application.platform != RuntimePlatform.Android && Application.platform != RuntimePlatform.IPhonePlayer)
+            {
+                Debug.LogError("HYPLAY currently does not work for standalone builds.");
                 return;
-            #endif
+            }
+            var redirectUri = Current.redirectUris.First(uri => !uri.Contains("http")) + $"&expiresAt={time.ToUnixTimeSeconds()}";
             var url = "https://hyplay.com/oauth/authorize/?appId=" + Current.id + "&chain=HYCHAIN&responseType=token&redirectUri=" + redirectUri;
             Application.OpenURL(url);
+            #else
+            
+            var body = new Dictionary<string, object>
+            {
+                { "appId", currentApp.id },
+                { "deadline", time.ToUnixTimeSeconds() },
+                { "responseType", "token" },
+                { "chain", "HYCHAIN"},
+                { "nonce", Guid.NewGuid() }
+            };
+
+            #if UNITY_2022_1_OR_NEWER
+            using var req = UnityWebRequest.Post($"https://api.hyplay.com/v1/sessions", HyplayJSON.Serialize(body), "application/json");
+            #else
+            using var req = UnityWebRequest.Post($"https://api.hyplay.com/v1/sessions", "");
+            HyplayJSON.SetData(ref req, HyplayJSON.Serialize(currentApp));
+            #endif
+            
+            req.SetRequestHeader("x-authorization", accessToken);
+            await req.SendWebRequest();
+
+            var res = JsonUtility.FromJson<SessionCreateResponse>(req.downloadHandler.text);
+
+            if (string.IsNullOrWhiteSpace(res.accessToken))
+            {
+                Debug.LogError("No access token recieved, check your access token starts with user_at_ in the settings, and make sure you have an app set up.");
+                return;
+            }
+            HyplayBridge.DeepLink($"myapp://token#token={res.accessToken}");
+            #endif
+            
             #endif
         }
         
@@ -132,3 +159,11 @@ namespace HYPLAY.Core.Runtime
         #endif
     }
 }
+
+#if UNITY_EDITOR
+[Serializable]
+public class SessionCreateResponse
+{
+    public string accessToken;
+}
+#endif
