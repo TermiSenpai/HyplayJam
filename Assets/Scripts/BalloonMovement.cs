@@ -3,37 +3,72 @@ using UnityEngine;
 
 public class BalloonMovement : MonoBehaviour
 {
-    public float speed = 5f;
-    public int initialDirection = 1;
-    private int direction;
-    private float screenLimitX; // Horizontal screen boundary in world coordinates
+    public float baseSpeed = 5f; // Base movement speed for the balloon
+    private Vector2 direction; // Current direction of movement
+    private float commonXPoint; // The X coordinate where all balloons will pass through
+    private float screenMinX; // Left screen boundary
+    private float screenMaxX; // Right screen boundary
+    private float timeToReachXPoint; // Time it should take to reach common X point
+    private float distanceToCommonXPoint; // Distance from the current position to the common X point
+    private float adjustedSpeed; // Adjusted speed for synchronization
+
 
     // Action event to notify when the balloon is destroyed or deactivated
     public event Action OnBalloonDestroyed;
 
-    void Start()
+    // Initialize the balloon properties
+    public void Initialize(float newCommonXPoint, float minX, float maxX)
     {
-        direction = initialDirection;
-        // Calculate the horizontal screen limit (boundaries in world coordinates)
-        screenLimitX = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0, 0)).x;
+        commonXPoint = newCommonXPoint;
+        screenMinX = minX;
+        screenMaxX = maxX;
+
+        // Set the initial direction based on position relative to commonXPoint
+        direction = (transform.position.x < commonXPoint) ? Vector2.right : Vector2.left;
+
+        // Calculate the distance to the common X point
+        distanceToCommonXPoint = Mathf.Abs(commonXPoint - transform.position.x);
+
+        // Set the time we want all balloons to take to reach the common X point (fixed time)
+        timeToReachXPoint = 2.0f; // Example: all balloons should reach the X point in 2 seconds
+
+        // Adjust speed so all balloons reach the common X point at the same time
+        adjustedSpeed = distanceToCommonXPoint / timeToReachXPoint;
     }
 
+    // Update the movement
     void Update()
     {
-        // Move the balloon based on its direction
-        transform.Translate(Vector2.right * direction * speed * Time.deltaTime);
+        Move(); // Handle movement in every frame
+        CheckScreenBounds(); // Check if the balloon has reached the screen bounds
+    }
 
-        // If the balloon crosses the horizontal screen limits, invert its direction
-        if (transform.position.x > screenLimitX || transform.position.x < -screenLimitX)
+    // Move the balloon in the current direction
+    private void Move()
+    {
+        // Move the balloon at the adjusted speed towards the direction
+        transform.position += (Vector3)(direction * adjustedSpeed * Time.deltaTime);
+    }
+
+    // Change the direction when reaching the screen bounds
+    private void CheckScreenBounds()
+    {
+        // Reverse direction when hitting the right bound
+        if (transform.position.x >= screenMaxX && direction == Vector2.right)
+        {
+            ChangeDirection();
+        }
+        // Reverse direction when hitting the left bound
+        else if (transform.position.x <= screenMinX && direction == Vector2.left)
         {
             ChangeDirection();
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    // Reverse the current direction of the balloon
+    private void ChangeDirection()
     {
-        // Deactivate the balloon on collision
-        DeactivateBalloon();
+        direction *= -1; // Reverse the direction by multiplying by -1
     }
 
     private void DeactivateBalloon()
@@ -45,10 +80,8 @@ public class BalloonMovement : MonoBehaviour
         Debug.Log("Balloon deactivated and returned to the pool.");
     }
 
-    // Method to change the direction when the balloon hits the screen limit
-    private void ChangeDirection()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        direction *= -1; // Invert the direction
-        Debug.Log("Balloon hit the screen limit, changing direction.");
+        DeactivateBalloon();
     }
 }

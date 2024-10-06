@@ -492,7 +492,7 @@ Transform:
   m_GameObject: {fileID: 1099393225}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5339819, y: 0.4556504, z: -0.03386864}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -511,6 +511,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   balloonPool: {fileID: 1099393229}
+  maxBalloonsInScene: 15
+  minSpawnArea: {x: -7, y: -3}
+  maxSpawnArea: {x: 7, y: 4}
+  commonXPoint: 0
+  gizmoSize: 0.5
 --- !u!114 &1099393229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -971,7 +976,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b35a6ad52120de479298341721c6bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verticalSpeed: 20
+  verticalSpeed: 35
   deactivateAtY: 11
 --- !u!60 &2068641710
 PolygonCollider2D:

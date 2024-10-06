@@ -33,7 +33,20 @@ public class BalloonSpawner : MonoBehaviour
     {
         Debug.Log($"Starting level {level} with {level} balloons.");
         activeBalloons = level; // Set the number of balloons for this level
-        balloonManager.SpawnBalloons(level); // Delegate the task of spawning balloons to BalloonManager
+
+        // Get the screen boundaries in world coordinates
+        float screenMinX = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0)).x;
+        float screenMaxX = Camera.main.ViewportToWorldPoint(new Vector3(1, 0, 0)).x;
+
+        // Call SpawnBalloons with the correct number of balloons and screen boundaries
+        balloonManager.SpawnBalloons(level, screenMinX, screenMaxX);
+    }
+
+    // Method to calculate the new common X point for each level
+    float CalculateCommonXPoint(int level)
+    {
+        // Example logic: Change the common X point for each level
+        return level * 2f; // This will move the common X point further right as the level increases
     }
 
     // Method called when a balloon is deactivated
@@ -47,16 +60,6 @@ public class BalloonSpawner : MonoBehaviour
             Debug.Log($"Level {level} completed.");
             level++; // Increase the level
             StartLevel(level); // Start the next level
-        }
-    }
-
-    void Update()
-    {
-        // Debugging: Start the game manually by pressing the 'S' key
-        if (Input.GetKeyDown(KeyCode.S) && !gameStarted)
-        {
-            Debug.Log("Starting the game manually.");
-            StartGame();
         }
     }
 }
