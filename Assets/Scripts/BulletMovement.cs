@@ -37,6 +37,6 @@ public class BulletMovement : MonoBehaviour
     private void OnEnable()
     {
         isMoving = false;
-        transform.localPosition = Vector2.zero;
+        transform.localPosition = new Vector2(0, -4.75f);
     }
 }
