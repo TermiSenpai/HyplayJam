@@ -13,8 +13,8 @@ public class BalloonManager : MonoBehaviour
 
     [Header("Common X Point")]
     public float commonXPoint = 0f; // The X coordinate where all balloons will pass during their movement
-    public float gizmoSize = 0.5f;  // Size of the Gizmo representing the common X pointç
-    public float moreminuscommon = 2f;
+    public float gizmoSize = 0.5f;  // Size of the Gizmo representing the common X point
+    public float moreminuscommon = 2f; // Range around the common X point for random spawning
 
     private int currentBalloonsInScene = 0; // Tracks active balloons
 

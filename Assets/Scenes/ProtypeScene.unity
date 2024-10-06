@@ -231,7 +231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 969cd4f379a305041a0fdd0c8bee2db6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 10
   objectToMove: {fileID: 2068641709}
 --- !u!1 &519420028
 GameObject:
@@ -516,6 +516,7 @@ MonoBehaviour:
   maxSpawnArea: {x: 7, y: 4}
   commonXPoint: 0
   gizmoSize: 0.5
+  moreminuscommon: 10
 --- !u!114 &1099393229
 MonoBehaviour:
   m_ObjectHideFlags: 0

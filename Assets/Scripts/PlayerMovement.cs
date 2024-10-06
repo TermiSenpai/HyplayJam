@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
 
         transform.Translate(movement);
 
-        if (Input.GetMouseButtonDown(0)) 
+        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)) 
         {
             if (objectToMove != null)
             {                

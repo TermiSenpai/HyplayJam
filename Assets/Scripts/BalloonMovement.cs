@@ -1,5 +1,5 @@
-using System;
 using UnityEngine;
+using System;
 
 public class BalloonMovement : MonoBehaviour
 {
@@ -11,7 +11,6 @@ public class BalloonMovement : MonoBehaviour
     private float timeToReachXPoint; // Time it should take to reach common X point
     private float distanceToCommonXPoint; // Distance from the current position to the common X point
     private float adjustedSpeed; // Adjusted speed for synchronization
-
 
     // Action event to notify when the balloon is destroyed or deactivated
     public event Action OnBalloonDestroyed;
