@@ -510,12 +510,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b1789de8f46e1a459cae5d756aaa969, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  balloonPool: {fileID: 1099393229}
+  pool: {fileID: 1099393229}
   maxBalloonsInScene: 15
   minSpawnArea: {x: -7, y: -3}
   maxSpawnArea: {x: 7, y: 4}
   commonXPoint: 0
-  gizmoSize: 0.5
   moreminuscommon: 10
 --- !u!114 &1099393229
 MonoBehaviour:

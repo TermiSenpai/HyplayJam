@@ -1,4 +1,5 @@
 using UnityEngine;
+using System; 
 
 public class BulletMovement : MonoBehaviour
 {
@@ -6,6 +7,8 @@ public class BulletMovement : MonoBehaviour
     public float deactivateAtY = 10f;
 
     private bool isMoving = false;
+
+    public event Action OnShoot;
 
     void Update()
     {
@@ -29,6 +32,7 @@ public class BulletMovement : MonoBehaviour
 
     public void StopMoving()
     {
+        OnShoot?.Invoke();
         isMoving = false;
         transform.localPosition = Vector2.zero;
     }
@@ -36,6 +40,6 @@ public class BulletMovement : MonoBehaviour
     private void OnEnable()
     {
         isMoving = false;
-        transform.localPosition = new Vector2(0, -4.75f);
+        transform.localPosition = Vector2.zero;
     }
 }
