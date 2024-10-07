@@ -30,7 +30,6 @@ public class BulletMovement : MonoBehaviour
     public void StopMoving()
     {
         isMoving = false;
-        gameObject.SetActive(false);
         transform.localPosition = Vector2.zero;
     }
 

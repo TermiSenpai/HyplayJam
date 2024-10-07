@@ -150,8 +150,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 96320e0525ff30048a6d47eaf256920b
-      internalID: -161629960
+      spriteID: 86a06a0ce7eb22640994f1a638874530
+      internalID: 1142616277
       vertices: []
       indices: 
       edges: []
@@ -171,8 +171,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 488aa094ddee31d41ae4f518cb4cd9ba
-      internalID: 748912984
+      spriteID: 4ad02f8d2ad2df14c82e4b2601c944c9
+      internalID: 1028713562
       vertices: []
       indices: 
       edges: []
@@ -192,8 +192,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 256e680081d99154895945e6ef04f813
-      internalID: 422634260
+      spriteID: 789b9264eeeaa2d49a41ae953b8da86b
+      internalID: -2097331829
       vertices: []
       indices: 
       edges: []
@@ -213,8 +213,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e242a754157dca043b226145c4ab2250
-      internalID: -2144030972
+      spriteID: 3515748a29c8a8040af0085cd83a89f0
+      internalID: -1685630016
       vertices: []
       indices: 
       edges: []
@@ -230,10 +230,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Dardos_0: -161629960
-      Dardos_1: 748912984
-      Dardos_2: 422634260
-      Dardos_3: -2144030972
+      Dardos_0: 1142616277
+      Dardos_1: 1028713562
+      Dardos_2: -2097331829
+      Dardos_3: -1685630016
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

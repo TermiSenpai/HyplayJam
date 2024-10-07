@@ -66,8 +66,10 @@ public class BalloonManager : MonoBehaviour
             // Generate random Y position within the spawn area
             float randomY = UnityEngine.Random.Range(minSpawnArea.y, maxSpawnArea.y);
 
-            // Generate random X position close to the common X point
-            float randomX = UnityEngine.Random.Range(commonXPoint - moreminuscommon, commonXPoint + moreminuscommon);
+            // Generate random X position within the screen boundaries, keeping a range around commonXPoint
+            float randomX = Mathf.Clamp(
+                UnityEngine.Random.Range(commonXPoint - moreminuscommon, commonXPoint + moreminuscommon),
+                screenMinX, screenMaxX); // Clamp to ensure it's within the screen bounds
 
             // Set the balloon's initial position
             balloon.transform.position = new Vector2(randomX, randomY);
