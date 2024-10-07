@@ -511,7 +511,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pool: {fileID: 1099393229}
-  maxBalloonsInScene: 15
+  maxBalloonsInScene: 10
   minSpawnArea: {x: -7, y: -3}
   maxSpawnArea: {x: 7, y: 4}
   commonXPoint: 0

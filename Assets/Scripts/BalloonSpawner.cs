@@ -38,21 +38,14 @@ public class BalloonSpawner : MonoBehaviour
         float screenMinX = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0)).x;
         float screenMaxX = Camera.main.ViewportToWorldPoint(new Vector3(1, 0, 0)).x;
 
+        // Spawn up to 10 balloons for the current level
         balloonManager.SpawnBalloons(level, screenMinX, screenMaxX);
     }
 
+    // Handle the balloon deactivation event
     private void OnBalloonDeactivated()
     {
-        if (balloonManager.GetCurrentBalloonsCount() == 0)
-        {
-            level++;
-            StartCoroutine(StartLevel(level));
-        }
-    }
-
-    public void OnPlayerShot()
-    {
-
+        // If all balloons have been deactivated, start the next level
         if (balloonManager.GetCurrentBalloonsCount() == 0)
         {
             level++;
