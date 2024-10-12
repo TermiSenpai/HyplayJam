@@ -15,7 +15,7 @@ public class BalloonManager : MonoBehaviour
     public Vector2 maxSpawnArea = new Vector2(5f, 4f);   // Maximum spawn area
 
     [Header("Common X Point")]
-    public float commonXPoint = 0f;
+    public float commonXPoint;  // This value will be assigned during gameplay
     public float moreminuscommon = 2f;
 
     private void Start()
@@ -23,14 +23,17 @@ public class BalloonManager : MonoBehaviour
         balloonPool = pool;
     }
 
-    // Method to spawn balloons for the current level, limited to maxBalloonsInScene (10 balloons)
     public void SpawnBalloons(int level, float screenMinX, float screenMaxX)
     {
         ClearActiveBalloons();
 
-        int balloonsToSpawn = Math.Min(level, maxBalloonsInScene); // Limit to maxBalloonsInScene
+        int balloonsToSpawn = Math.Min(level, maxBalloonsInScene);
 
-        commonXPoint = UnityEngine.Random.Range(screenMinX, screenMaxX);
+        // Set commonXPoint within the spawn area
+        commonXPoint = UnityEngine.Random.Range(minSpawnArea.x, maxSpawnArea.x);
+
+        // Set a fixed time for all balloons to reach the commonXPoint
+        float timeToReachCommonXPoint = 2.0f; // All balloons will pass through the commonXPoint in 2 seconds
 
         for (int i = 0; i < balloonsToSpawn; i++)
         {
@@ -41,10 +44,25 @@ public class BalloonManager : MonoBehaviour
                 continue;
             }
 
+            // Set a random Y position within the spawn area
             float randomY = UnityEngine.Random.Range(minSpawnArea.y, maxSpawnArea.y);
-            float randomX = Mathf.Clamp(UnityEngine.Random.Range(commonXPoint - moreminuscommon, commonXPoint + moreminuscommon), screenMinX, screenMaxX);
 
-            balloon.transform.position = new Vector2(randomX, randomY);
+            // Calculate the direction: decide whether the balloon starts on the left or right
+            bool startOnLeft = UnityEngine.Random.value > 0.5f;
+            float initialXPosition;
+
+            // Calculate initial X position based on the timeToReachCommonXPoint and the balloon speed
+            if (startOnLeft)
+            {
+                initialXPosition = commonXPoint - (timeToReachCommonXPoint * balloon.GetComponent<BalloonMovement>().speed);
+            }
+            else
+            {
+                initialXPosition = commonXPoint + (timeToReachCommonXPoint * balloon.GetComponent<BalloonMovement>().speed);
+            }
+
+            // Set the balloon's initial position
+            balloon.transform.position = new Vector2(initialXPosition, randomY);
             balloon.SetActive(true);
 
             IBalloonMovement balloonMovement = balloon.GetComponent<IBalloonMovement>();
@@ -61,16 +79,12 @@ public class BalloonManager : MonoBehaviour
         Debug.Log($"Spawned {balloonsToSpawn} balloons.");
     }
 
-    // Handle balloon deactivation
     private void HandleBalloonDeactivation()
     {
         currentBalloonsInScene--;
-
-        // Trigger the event to notify the BalloonSpawner
         OnBalloonDeactivated?.Invoke();
     }
 
-    // Clear active balloons
     private void ClearActiveBalloons()
     {
         foreach (Transform balloon in transform)
@@ -83,5 +97,24 @@ public class BalloonManager : MonoBehaviour
     public int GetCurrentBalloonsCount()
     {
         return currentBalloonsInScene;
+    }
+
+    // Method to draw Gizmos in the Scene view
+    private void OnDrawGizmos()
+    {
+        // Set the Gizmo color for the spawn area (cyan)
+        Gizmos.color = Color.cyan;
+
+        // Calculate the size of the spawn area
+        Vector3 spawnAreaSize = new Vector3(maxSpawnArea.x - minSpawnArea.x, maxSpawnArea.y - minSpawnArea.y, 1f);
+
+        // Draw the spawn area as a wireframe box in the Scene view
+        Gizmos.DrawWireCube(new Vector3((minSpawnArea.x + maxSpawnArea.x) / 2f, (minSpawnArea.y + maxSpawnArea.y) / 2f, 0), spawnAreaSize);
+
+        // Set the Gizmo color for the commonXPoint (red)
+        Gizmos.color = Color.red;
+
+        // Draw a vertical line representing the commonXPoint in the Scene view
+        Gizmos.DrawLine(new Vector3(commonXPoint, minSpawnArea.y, 0), new Vector3(commonXPoint, maxSpawnArea.y, 0));
     }
 }

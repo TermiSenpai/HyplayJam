@@ -466,6 +466,7 @@ GameObject:
   - component: {fileID: 1099393226}
   - component: {fileID: 1099393229}
   - component: {fileID: 1099393228}
+  - component: {fileID: 1099393230}
   m_Layer: 0
   m_Name: manager
   m_TagString: Untagged
@@ -516,8 +517,7 @@ MonoBehaviour:
   maxBalloonsInScene: 10
   minSpawnArea: {x: -7, y: -3}
   maxSpawnArea: {x: 7, y: 4}
-  commonXPoint: 0
-  moreminuscommon: 10
+  moreminuscommon: 5
 --- !u!114 &1099393229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -532,6 +532,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   balloonPrefab: {fileID: 779182114632880559, guid: f75e9907d152e904b998df837a514c2b, type: 3}
   initialPoolSize: 10
+--- !u!114 &1099393230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1099393225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d192f66297f95424fac6d220ef21d3b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1376312876
 GameObject:
   m_ObjectHideFlags: 0
