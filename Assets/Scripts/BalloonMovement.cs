@@ -8,8 +8,27 @@ public class BalloonMovement : MonoBehaviour, IBalloonMovement
     private float commonXPoint;
     private float screenMinX;
     private float screenMaxX;
+    private AudioSource source;
+    public float soundTime;
 
     public event Action OnBalloonDestroyed; // Evento que se activa cuando el globo se destruye
+
+    private void Awake()
+    {
+        // Buscar el GameObject que contiene el AudioSource externo (esto solo debería hacerse una vez)
+        if (source == null)
+        {
+            GameObject audioObject = GameObject.Find("balloonPOPs"); // Cambia el nombre según el objeto que contiene el AudioSource
+            if (audioObject != null)
+            {
+                source = audioObject.GetComponent<AudioSource>();
+            }
+            else
+            {
+                Debug.LogError("No se encontró el objeto ExternalAudioSource.");
+            }
+        }
+    }
 
     // Inicializar el movimiento del globo
     public void Initialize(float newCommonXPoint, float minX, float maxX)
@@ -63,6 +82,8 @@ public class BalloonMovement : MonoBehaviour, IBalloonMovement
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        source.time = soundTime;
+        source.PlayOneShot(source.clip);
         DeactivateBalloon(); // Desactivar el globo al colisionar
     }
 }
