@@ -9,6 +9,7 @@ public class BulletMovement : MonoBehaviour
     private bool isMoving = false;
 
     public event Action OnShoot;
+    
 
     void Update()
     {
@@ -26,15 +27,16 @@ public class BulletMovement : MonoBehaviour
 
     public void StartMoving()
     {
-        gameObject.SetActive(true);
         isMoving = true;
     }
 
     public void StopMoving()
     {
         OnShoot?.Invoke();
+        gameObject.SetActive(false);
         isMoving = false;
         transform.localPosition = Vector2.zero;
+        gameObject.SetActive(true);
     }
 
     private void OnEnable()

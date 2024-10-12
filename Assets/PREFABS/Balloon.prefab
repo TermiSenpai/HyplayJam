@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8831069823432020666}
   - component: {fileID: 3116139454057020641}
   - component: {fileID: 4988450828889083910}
+  - component: {fileID: 7075152559436313111}
   m_Layer: 6
   m_Name: Balloon
   m_TagString: Untagged
@@ -162,3 +163,24 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &7075152559436313111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 779182114632880559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1471b3acbbecbd248bd4aa1900c02f3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 134825628, guid: 0e785b94247a062478f93625ba7f4960, type: 3}
+  - {fileID: -575702535, guid: 0e785b94247a062478f93625ba7f4960, type: 3}
+  - {fileID: 994631047, guid: 0e785b94247a062478f93625ba7f4960, type: 3}
+  - {fileID: 400742777, guid: 0e785b94247a062478f93625ba7f4960, type: 3}
+  - {fileID: 262171396, guid: 0e785b94247a062478f93625ba7f4960, type: 3}
+  - {fileID: -1908467393, guid: 0e785b94247a062478f93625ba7f4960, type: 3}
+  - {fileID: 1869281403, guid: 0e785b94247a062478f93625ba7f4960, type: 3}
+  - {fileID: -881173039, guid: 0e785b94247a062478f93625ba7f4960, type: 3}

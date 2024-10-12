@@ -892,6 +892,7 @@ GameObject:
   - component: {fileID: 2068641709}
   - component: {fileID: 2068641711}
   - component: {fileID: 2068641712}
+  - component: {fileID: 2068641713}
   m_Layer: 7
   m_Name: Bullet
   m_TagString: Untagged
@@ -1042,6 +1043,23 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.3, y: 1}
   m_Direction: 0
+--- !u!114 &2068641713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2068641706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1471b3acbbecbd248bd4aa1900c02f3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 1142616277, guid: fd0bf05092eb44942815d05f2c12ac72, type: 3}
+  - {fileID: 1028713562, guid: fd0bf05092eb44942815d05f2c12ac72, type: 3}
+  - {fileID: -2097331829, guid: fd0bf05092eb44942815d05f2c12ac72, type: 3}
+  - {fileID: -1685630016, guid: fd0bf05092eb44942815d05f2c12ac72, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
