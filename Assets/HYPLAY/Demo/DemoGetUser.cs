@@ -28,6 +28,23 @@ namespace HYPLAY.Demo
             var res = await HyplayBridge.GetUserAsync();
             if (res.Success)
                 text.text = $"Welcome {res.Data.Username}";
+
+
+            Dictionary<string, bool> _achievements = new()
+            {
+                { "test achievement 1", false },
+                { "test achievement 2", false },
+            };
+
+            var state = new HyplayAppState<Dictionary<string, bool>>
+            {
+                Key = "achievements",
+                ProtectedState = _achievements
+            };
+            await HyplayBridge.SetState(state);
+
+            var foundState = (await HyplayBridge.GetState<HyplayAppState<Dictionary<string, bool>>>("achievements")).Data.ProtectedState;
+            _achievements = foundState.ProtectedState;
         }
     }
 }

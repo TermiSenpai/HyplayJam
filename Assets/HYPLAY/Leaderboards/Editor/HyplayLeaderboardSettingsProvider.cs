@@ -10,7 +10,7 @@ using UnityEngine.UIElements;
 
 namespace UnityEditor.Hyplay
 {
-    public class HyplaySettingsProvider
+    public class HyplayLeaderboardSettingsProvider
     {
         private static HyplayLeaderboards _settings;
         private static HyplaySettings _app;

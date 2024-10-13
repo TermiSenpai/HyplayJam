@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5430e3f481ef42cf94d3577880d201f2, type: 3}
+  m_Name: leaderboard-db9e70be-61b8-4e8b-a447-6bed4e33de6a
+  m_EditorClassIdentifier: 
+  id: db9e70be-61b8-4e8b-a447-6bed4e33de6a
+  name: TestingLeaderboard
+  description: Testing
+  secretKey: leaderboard_Ozdu-id3EIQiedvffLg4u9pZKLcBnXzNbF0r3xu2WAf89hv2t_cV_Vec99Q4WXiT

@@ -52,7 +52,8 @@ namespace HYPLAY.Leaderboards.Runtime
             using var req = UnityWebRequest.Get($"https://api.hyplay.com/v1/apps/{appId}/leaderboards");
             await req.SendWebRequest();
 
-            var res = HyplayJSON.Deserialize<JArray>(req.downloadHandler.text);
+            var text = req.downloadHandler.text;
+            var res = HyplayJSON.Deserialize<JArray>(text);
             
             foreach (var lb in res)
             {
@@ -66,9 +67,11 @@ namespace HYPLAY.Leaderboards.Runtime
                 }
             }
 
-            var toRemove = (from lb in leaderboards from foundLb in res where lb.id != foundLb["id"]?.ToString() select lb).ToList();
+            var toRemove = (from lb in leaderboards let foundMatch = res.Any(foundLb => lb.id == foundLb["id"]?.ToString()) where !foundMatch select lb).ToList();
+
             foreach (var lb in toRemove)
             {
+                if (lb == null) continue;
                 leaderboards.Remove(lb);
                 AssetDatabase.DeleteAsset(AssetDatabase.GetAssetPath(lb));
             }
@@ -88,7 +91,7 @@ namespace HYPLAY.Leaderboards.Runtime
             }
 
             JsonUtility.FromJsonOverwrite(lb.ToString(), found);
-            EditorUtility.SetDirty(found); 
+            EditorUtility.SetDirty(found);
             AssetDatabase.SaveAssets();
 
             if (lb["key"] != null)

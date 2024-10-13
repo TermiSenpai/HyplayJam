@@ -197,6 +197,7 @@ namespace HYPLAY.Core.Runtime
             {
                 Debug.LogWarning("Tried signing out but there's no token!");
             }
+            ClearUser();
         }
 
         public static async void Logout(Action onComplete)

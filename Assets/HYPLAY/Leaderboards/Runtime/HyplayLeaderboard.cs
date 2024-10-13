@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using HYPLAY.Core.Runtime;
 using UnityEngine;
@@ -48,6 +49,7 @@ namespace HYPLAY.Leaderboards.Runtime
         public async Task<HyplayResponse<LeaderboardResponse>> PostScore (int score)
         {
             var dataToHash = $"{secretKey}:{HyplayBridge.CurrentUser.Id}:{score.ToString(CultureInfo.InvariantCulture)}";
+            Debug.Log(dataToHash);
             using var sha256Hash = SHA256.Create();
 
             // Convert the input string to a byte array and compute the hash
@@ -70,6 +72,7 @@ namespace HYPLAY.Leaderboards.Runtime
                 { "score", score },
                 { "hash", hash }
             };
+            Debug.Log(HyplayJSON.Serialize(body));
             
             using var req = UnityWebRequest.Post(
                 $"https://api.hyplay.com/v1/apps/{HyplayBridge.GetSettings().Current.id}/leaderboards/{id}/scores",
