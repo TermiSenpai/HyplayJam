@@ -13,6 +13,7 @@ namespace HYPLAY.Demo
     {
         [SerializeField] private TextMeshProUGUI text;
         [SerializeField] private CanvasGroup signInSplash;
+        [SerializeField] private GameObject mainMenu;
         
         private void Awake()
         {
@@ -25,9 +26,10 @@ namespace HYPLAY.Demo
         {
             signInSplash.alpha = 0;
             signInSplash.blocksRaycasts = false;
+            mainMenu.SetActive(true);
             var res = await HyplayBridge.GetUserAsync();
             if (res.Success)
-                text.text = $"Welcome {res.Data.Username}";
+                text.text = $"Login as {res.Data.Username}";
 
 
             Dictionary<string, bool> _achievements = new()

@@ -21,7 +21,7 @@ MonoBehaviour:
   currentApp:
     id: c0b9d6fc-60cd-41a5-992d-c4733d337a5c
     secretKey: app_sk_NWp5HXkGQIm9eunBKqXVCgvhD2U2MxtQ3w0uPb_tuUEQo0F6thRv_IajJpoDu1dY
-    name: Hyplay app
+    name: POP IT
     description: This is a hyplay jam
     redirectUris:
     - https://termisenpai.itch.io/pop-it
