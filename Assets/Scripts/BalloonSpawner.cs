@@ -4,8 +4,10 @@ using UnityEngine;
 public class BalloonSpawner : MonoBehaviour
 {
     private BalloonManager balloonManager;
+    public GameOverLeaderboard gameOverLeaderboard;
     private int level = 1;
     private bool gameStarted = false;
+    public GameObject leaderboard;
 
     private void Awake()
     {
@@ -63,7 +65,10 @@ public class BalloonSpawner : MonoBehaviour
     private void HandleGameOver()
     {
         Debug.Log("Game Over! You missed balloons.");
+        gameOverLeaderboard.OnGameOver(ScoreManager.Instance.Score);
         gameStarted = false;
+
+        leaderboard.SetActive(true);
         // Add logic to handle game over (e.g., show UI, restart game, etc.)
     }
 }
