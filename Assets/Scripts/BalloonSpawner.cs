@@ -7,7 +7,7 @@ public class BalloonSpawner : MonoBehaviour
     public GameOverLeaderboard gameOverLeaderboard;
     private int level = 1;
     private bool gameStarted = false;
-    public GameObject leaderboard;
+    public GameObject gameoverMenu;
 
     private void Awake()
     {
@@ -68,7 +68,7 @@ public class BalloonSpawner : MonoBehaviour
         gameOverLeaderboard.OnGameOver(ScoreManager.Instance.Score);
         gameStarted = false;
 
-        leaderboard.SetActive(true);
+        gameoverMenu.SetActive(true);
         // Add logic to handle game over (e.g., show UI, restart game, etc.)
     }
 }

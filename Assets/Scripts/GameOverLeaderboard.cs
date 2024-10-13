@@ -29,7 +29,7 @@ public class GameOverLeaderboard : MonoBehaviour
     public void OnGameOver(int finalScore)
     {
         _score = finalScore;
-        myScore.text = $"Final score: {_score}";  // Eliminar formato decimal ya que es un entero
+        myScore.text = $"Score: {_score}";  // Eliminar formato decimal ya que es un entero
         SubmitScore();  // Enviar el puntaje al terminar el juego
     }
 
