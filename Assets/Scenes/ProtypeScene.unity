@@ -1688,6 +1688,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pool: {fileID: 1099393229}
+  bullet: {fileID: 2068641709}
   maxBalloonsInScene: 10
   minSpawnArea: {x: -7, y: -3}
   maxSpawnArea: {x: 7, y: 3.5}
@@ -3727,6 +3728,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   verticalSpeed: 40
   deactivateAtY: 11
+  balloonManager: {fileID: 0}
 --- !u!50 &2068641711
 Rigidbody2D:
   serializedVersion: 4
