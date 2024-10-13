@@ -7,10 +7,15 @@ public class BalloonSpawner : MonoBehaviour
     private int level = 1;
     private bool gameStarted = false;
 
+    private void Awake()
+    {
+        balloonManager = GetComponent<BalloonManager>();
+        balloonManager.OnGameOver += HandleGameOver;
+    }
+
     void Start()
     {
         // Get the BalloonManager component and validate it
-        balloonManager = GetComponent<BalloonManager>();
         if (balloonManager == null)
         {
             Debug.LogError("BalloonManager component is missing on this GameObject. Please add it.");
@@ -33,6 +38,7 @@ public class BalloonSpawner : MonoBehaviour
 
     IEnumerator StartLevel(int level)
     {
+        
         yield return new WaitForSeconds(2f);
 
         float screenMinX = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0)).x;
@@ -45,6 +51,7 @@ public class BalloonSpawner : MonoBehaviour
     // Handle the balloon deactivation event
     private void OnBalloonDeactivated()
     {
+        if (!gameStarted) return;
         // If all balloons have been deactivated, start the next level
         if (balloonManager.GetCurrentBalloonsCount() == 0)
         {
@@ -52,4 +59,13 @@ public class BalloonSpawner : MonoBehaviour
             StartCoroutine(StartLevel(level));
         }
     }
+
+    private void HandleGameOver()
+    {
+        Debug.Log("Game Over! You missed balloons.");
+        gameStarted = false;
+        // Add logic to handle game over (e.g., show UI, restart game, etc.)
+    }
 }
+
+

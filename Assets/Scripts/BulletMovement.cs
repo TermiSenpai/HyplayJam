@@ -9,6 +9,7 @@ public class BulletMovement : MonoBehaviour
     private bool isMoving = false;
 
     public event Action OnShoot;
+    public BalloonManager balloonManager;
     
 
     void Update()
@@ -32,10 +33,14 @@ public class BulletMovement : MonoBehaviour
 
     public void StopMoving()
     {
-        OnShoot?.Invoke();
         gameObject.SetActive(false);
         isMoving = false;
         transform.localPosition = Vector2.zero;
+        OnShoot?.Invoke();
+    }
+
+    public void Reactivate()
+    {
         gameObject.SetActive(true);
     }
 

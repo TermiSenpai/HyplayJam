@@ -6,6 +6,8 @@ public class BalloonManager : MonoBehaviour
     public BalloonPool pool;
     public IBalloonPool balloonPool; // Reference to the balloon pool
     public event Action OnBalloonDeactivated; // Event triggered when a balloon is deactivated
+    public BulletMovement bullet;
+    public event Action OnGameOver;
 
     public int maxBalloonsInScene = 10; // Max of 10 balloons active at once
     private int currentBalloonsInScene = 0;
@@ -21,6 +23,11 @@ public class BalloonManager : MonoBehaviour
     private void Start()
     {
         balloonPool = pool;
+    }
+
+    private void Awake()
+    {
+        bullet.OnShoot += HandleShoots;
     }
 
     public void SpawnBalloons(int level, float screenMinX, float screenMaxX)
@@ -97,6 +104,25 @@ public class BalloonManager : MonoBehaviour
     public int GetCurrentBalloonsCount()
     {
         return currentBalloonsInScene;
+    }
+
+    public bool AreBalloonsRemaining()
+    {
+        return currentBalloonsInScene > 0;
+    }
+
+    private void HandleShoots()
+    {
+        if(AreBalloonsRemaining())
+        {
+            OnGameOver?.Invoke();
+            ClearActiveBalloons();
+        }
+        else
+        {
+            bullet.Reactivate();
+        }
+
     }
 
     // Method to draw Gizmos in the Scene view
