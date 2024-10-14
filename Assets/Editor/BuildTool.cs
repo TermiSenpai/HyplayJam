@@ -8,9 +8,10 @@ using UnityEditor.Build.Reporting;
 
 public class BuildToolWindow : EditorWindow
 {
-    private string buildPath = "";
-    private BuildTarget selectedTarget = BuildTarget.StandaloneWindows64;
-    private bool useBuildSettingsScenes = true; // Opción para usar escenas del Build Settings
+    private string buildPath = "D:\\UnityBuilds\\Hyplay";
+    private BuildTarget selectedTarget = BuildTarget.WebGL;
+    private bool useBuildSettingsScenes = true;
+    [SerializeField] private string buildName = "Pop it";  // Nombre de la build
 
     [MenuItem("Build/Build Tool Window")]
     public static void ShowWindow()
@@ -22,8 +23,11 @@ public class BuildToolWindow : EditorWindow
     {
         GUILayout.Label("Build Settings", EditorStyles.boldLabel);
 
+        // Campo para ingresar el nombre de la build
+        buildName = EditorGUILayout.TextField("Build Name", buildName);
+
         // Opción para seleccionar si se usan las escenas del Build Settings o un selector de escenas
-        useBuildSettingsScenes = EditorGUILayout.Toggle("Use Build Settings Scenes", useBuildSettingsScenes);
+        //useBuildSettingsScenes = EditorGUILayout.Toggle("Use Build Settings Scenes", useBuildSettingsScenes);
 
         // Select platform for build
         selectedTarget = (BuildTarget)EditorGUILayout.EnumPopup("Build Target", selectedTarget);
@@ -71,7 +75,7 @@ public class BuildToolWindow : EditorWindow
         BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions
         {
             scenes = scenes,
-            locationPathName = Path.Combine(buildPath, "Build" + suffix),
+            locationPathName = Path.Combine(buildPath, buildName + suffix),  // Usar el nombre de la build
             target = selectedTarget,
             options = BuildOptions.None
         };
@@ -81,7 +85,16 @@ public class BuildToolWindow : EditorWindow
         if (report.summary.result == BuildResult.Succeeded)
         {
             // Compress the build into a .zip file
-            string zipPath = Path.Combine(buildPath, "Build" + suffix + ".zip");
+            string zipPath = Path.Combine(buildPath, buildName + suffix + ".zip");  // Usar el nombre de la build para el zip
+
+            // Check if the zip file already exists, and delete it if it does
+            if (File.Exists(zipPath))
+            {
+                File.Delete(zipPath);
+                Debug.Log("Existing zip file deleted: " + zipPath);
+            }
+
+            // Now create the new zip file
             ZipFile.CreateFromDirectory(buildPlayerOptions.locationPathName, zipPath);
             Debug.Log("Build and compression completed: " + zipPath);
         }
@@ -90,6 +103,7 @@ public class BuildToolWindow : EditorWindow
             Debug.LogError("Build failed!");
         }
     }
+
 
     private string GetSuffixForTarget(BuildTarget target)
     {
