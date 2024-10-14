@@ -11,6 +11,9 @@ public class BalloonMovement : MonoBehaviour, IBalloonMovement
     private AudioSource source;
     public float soundTime;
 
+    [Header("Points")]
+    [SerializeField] int points = 100;
+
     public event Action OnBalloonDestroyed; // Evento que se activa cuando el globo se destruye
 
     private void Awake()
@@ -75,7 +78,7 @@ public class BalloonMovement : MonoBehaviour, IBalloonMovement
 
     private void DeactivateBalloon()
     {
-        ScoreManager.Instance.AddPoints(10); // Sumar puntos al destruir el globo
+        ScoreManager.Instance.AddPoints(points); // Sumar puntos al destruir el globo
         OnBalloonDestroyed?.Invoke(); // Activar el evento de destrucción del globo
         gameObject.SetActive(false); // Desactivar el globo
     }

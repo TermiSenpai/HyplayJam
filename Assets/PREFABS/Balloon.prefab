@@ -102,6 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   soundTime: 0.15
+  points: 10
 --- !u!58 &3116139454057020641
 CircleCollider2D:
   m_ObjectHideFlags: 0
