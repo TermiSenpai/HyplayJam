@@ -3931,9 +3931,9 @@ GameObject:
   - component: {fileID: 1376312881}
   - component: {fileID: 1376312882}
   - component: {fileID: 1376312883}
-  - component: {fileID: 1376312885}
   - component: {fileID: 1376312886}
   - component: {fileID: 1376312887}
+  - component: {fileID: 1376312888}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -4074,21 +4074,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuPanel: {fileID: 1220512284}
---- !u!114 &1376312885
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1376312876}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1070923e37f4570b18f92b09f99f3fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  text: {fileID: 1617772658}
-  signInSplash: {fileID: 107339433}
-  mainMenu: {fileID: 189971929}
 --- !u!114 &1376312886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4124,6 +4109,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicObject: {fileID: 974273774}
+--- !u!114 &1376312888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1376312876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ec0bfc016d3dcd42b783005918b63bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 1617772658}
+  signInSplash: {fileID: 107339433}
+  mainMenu: {fileID: 189971929}
 --- !u!1 &1376540719
 GameObject:
   m_ObjectHideFlags: 0

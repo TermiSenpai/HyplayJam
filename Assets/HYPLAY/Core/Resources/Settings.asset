@@ -17,7 +17,7 @@ MonoBehaviour:
   appDescription: 
   appUrl: 
   timeoutHours: 24
-  usePopup: 1
+  splashHasSignInButton: 1
   currentApp:
     id: c0b9d6fc-60cd-41a5-992d-c4733d337a5c
     secretKey: app_sk_NWp5HXkGQIm9eunBKqXVCgvhD2U2MxtQ3w0uPb_tuUEQo0F6thRv_IajJpoDu1dY
@@ -29,8 +29,8 @@ MonoBehaviour:
     - http://localhost
     url: https://termisenpai.itch.io/pop-it
     iconImageAsset:
-      id: 7b9ae654-a8b3-4900-978b-b07e3c9b59eb
-      cdnUrl: https://assets.hyplay.com/e5f874b6-de9e-4a71-a8dd-faad4eb494f7/ed7640c51ec18e20973384a45e1fa761-1728808115294.png
+      id: 5759c1e4-067e-4974-9455-0fed36f82653
+      cdnUrl: https://assets.hyplay.com/e5f874b6-de9e-4a71-a8dd-faad4eb494f7/01c78806b8297357a95d2779e3a09836-1728921173350.png
     backgroundImageAsset:
-      id: 7b9ae654-a8b3-4900-978b-b07e3c9b59eb
-      cdnUrl: https://assets.hyplay.com/e5f874b6-de9e-4a71-a8dd-faad4eb494f7/ed7640c51ec18e20973384a45e1fa761-1728808115294.png
+      id: 5e7e952f-e6a0-46cb-9b1d-e14fca4c7489
+      cdnUrl: https://assets.hyplay.com/e5f874b6-de9e-4a71-a8dd-faad4eb494f7/7cac626c3cd4c050f36e8bd8211c9e59-1728921176089.png

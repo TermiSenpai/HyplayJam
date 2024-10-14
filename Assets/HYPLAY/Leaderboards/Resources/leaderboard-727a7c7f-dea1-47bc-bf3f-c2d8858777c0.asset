@@ -16,3 +16,4 @@ MonoBehaviour:
   name: PopItLeaderboard
   description: Jam leaderboard
   secretKey: leaderboard_pPyvDyEsVF3s_djx5LSmbdf5yAAQ5Auw_dTN7rVOzRPKcnVUjZ1SCwX4rERHwF0G
+  scoreType: 0

@@ -16,3 +16,4 @@ MonoBehaviour:
   name: TestingLeaderboard
   description: Testing
   secretKey: leaderboard_Ozdu-id3EIQiedvffLg4u9pZKLcBnXzNbF0r3xu2WAf89hv2t_cV_Vec99Q4WXiT
+  scoreType: 0

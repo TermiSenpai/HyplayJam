@@ -9,11 +9,12 @@ using UnityEngine.UI;
 
 namespace HYPLAY.Demo
 {
-    public class DemoGetUser : MonoBehaviour
+    public class GetCustomUser : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI text;
         [SerializeField] private CanvasGroup signInSplash;
-        
+        [SerializeField] private GameObject mainMenu;
+
         private void Awake()
         {
             HyplayBridge.LoggedIn += OnLoggedIn;
@@ -27,9 +28,10 @@ namespace HYPLAY.Demo
         {
             signInSplash.alpha = 0;
             signInSplash.blocksRaycasts = false;
+            mainMenu.SetActive(true);
             var res = await HyplayBridge.GetUserAsync();
             if (res.Success)
-                text.text = $"Welcome {res.Data.Username}";
+                text.text = $"Logged as {res.Data.Username}";
         }
     }
 }

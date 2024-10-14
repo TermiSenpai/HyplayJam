@@ -45,6 +45,7 @@ namespace HYPLAY.Demo
         private async void GetScores()
         {
             if (leaderboard == null) return;
+            
             foreach (var text in scoreText)
                 text.gameObject.SetActive(false);
             
@@ -61,6 +62,15 @@ namespace HYPLAY.Demo
                 text.gameObject.SetActive(true);
                 text.text = $"{score.username} scored {score.score:F}";
             }
+
+            var currentUserScore = await leaderboard.GetCurrentUserScore();
+            if (!currentUserScore.Success)
+            {
+                Debug.LogError($"Getting current user score failed: {currentUserScore.Error}");
+                return;
+            }
+            
+            Debug.Log($"Current user score: {currentUserScore.Data}");
         }
 
         private void Update()
