@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public BulletMovement objectToMove;
     AudioSource source;
 
-    private bool canMove = true; // Variable para controlar si el jugador puede moverse
+    public bool canMove = true; // Variable para controlar si el jugador puede moverse
 
     private void Awake()
     {

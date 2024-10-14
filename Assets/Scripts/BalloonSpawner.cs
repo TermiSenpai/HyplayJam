@@ -8,6 +8,7 @@ public class BalloonSpawner : MonoBehaviour
     private int level = 1;
     private bool gameStarted = false;
     public GameObject gameoverMenu;
+    [SerializeField] PlayerMovement player;
 
     private void Awake()
     {
@@ -69,6 +70,7 @@ public class BalloonSpawner : MonoBehaviour
         gameStarted = false;
 
         gameoverMenu.SetActive(true);
+        player.gameObject.SetActive(false);
         // Add logic to handle game over (e.g., show UI, restart game, etc.)
     }
 }
