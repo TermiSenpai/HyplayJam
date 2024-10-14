@@ -36,8 +36,11 @@ public class BalloonManager : MonoBehaviour
 
         int balloonsToSpawn = Math.Min(level, maxBalloonsInScene);
 
-        // Set commonXPoint within the spawn area
-        commonXPoint = UnityEngine.Random.Range(minSpawnArea.x, maxSpawnArea.x);
+        // Set commonXPoint within the screen limits (clamped to screen width)
+        commonXPoint = Mathf.Clamp(
+            UnityEngine.Random.Range(minSpawnArea.x, maxSpawnArea.x),
+            screenMinX, screenMaxX
+        );
 
         // Set a fixed time for all balloons to reach the commonXPoint
         float timeToReachCommonXPoint = 2.0f; // All balloons will pass through the commonXPoint in 2 seconds
@@ -58,14 +61,23 @@ public class BalloonManager : MonoBehaviour
             bool startOnLeft = UnityEngine.Random.value > 0.5f;
             float initialXPosition;
 
-            // Calculate initial X position based on the timeToReachCommonXPoint and the balloon speed
+            // Calculate initial X position based on the balloon's speed and clamp it within screen bounds
+            float speed = balloon.GetComponent<BalloonMovement>().speed;
             if (startOnLeft)
             {
-                initialXPosition = commonXPoint - (timeToReachCommonXPoint * balloon.GetComponent<BalloonMovement>().speed);
+                // Balloons from the left should not spawn outside the left screen boundary
+                initialXPosition = Mathf.Clamp(
+                    commonXPoint - (timeToReachCommonXPoint * speed),
+                    screenMinX, commonXPoint
+                );
             }
             else
             {
-                initialXPosition = commonXPoint + (timeToReachCommonXPoint * balloon.GetComponent<BalloonMovement>().speed);
+                // Balloons from the right should not spawn outside the right screen boundary
+                initialXPosition = Mathf.Clamp(
+                    commonXPoint + (timeToReachCommonXPoint * speed),
+                    commonXPoint, screenMaxX
+                );
             }
 
             // Set the balloon's initial position
@@ -113,7 +125,7 @@ public class BalloonManager : MonoBehaviour
 
     private void HandleShoots()
     {
-        if(AreBalloonsRemaining())
+        if (AreBalloonsRemaining())
         {
             OnGameOver?.Invoke();
             ClearActiveBalloons();
@@ -122,7 +134,6 @@ public class BalloonManager : MonoBehaviour
         {
             bullet.Reactivate();
         }
-
     }
 
     // Method to draw Gizmos in the Scene view

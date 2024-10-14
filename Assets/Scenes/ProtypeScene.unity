@@ -2930,7 +2930,7 @@ MonoBehaviour:
   minSpawnArea: {x: -7, y: -3}
   maxSpawnArea: {x: 7, y: 3.5}
   commonXPoint: 0
-  moreminuscommon: 5
+  moreminuscommon: 2
 --- !u!114 &1099393229
 MonoBehaviour:
   m_ObjectHideFlags: 0
